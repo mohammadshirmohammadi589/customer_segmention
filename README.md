@@ -1,4 +1,5 @@
-# ✅ README — Customer Segmentation Using Machine Learning
+# ✅ Customer Segmentation Using Machine Learning
+
 
 ## 📌 Project Overview
 
@@ -19,25 +20,14 @@ Allocate resources more efficiently
 
 This project uses clustering algorithms and dimensionality reduction techniques to uncover hidden patterns in the customer data.
 
+
 ## 📊 Dataset Overview
 
 The dataset contains standard customer attributes commonly used in segmentation:
 
-Feature	Description
-customerID	Unique identifier
-gender	Male / Female
-SeniorCitizen	Whether the customer is a senior citizen
-Partner	Has partner or not
-Dependents	Has dependents or not
-tenure	Customer relationship duration
-PhoneService	Phone service status
-MultipleLines	Multiple phone lines
-InternetService	DSL / Fiber / None
-OnlineSecurity, OnlineBackup, TechSupport, etc.	Service add-ons
-Contract	Month-to-month / One-year / Two-year
-PaymentMethod	Payment type
-MonthlyCharges, TotalCharges	Financial metrics
-Churn	Whether customer left the company
+customerID ,gender , SeniorCitizen ,Partner ,dependents , tenure , PhoneService , MultipleLines , InternetService , OnlineSecurity , OnlineBackup , DeviceProtection , TechSupport , StreamingTV , StreamingMovies , Contract , PaperlessBilling , PaymentMethod , MonthlyCharges , TotalCharges , Churn
+
+
 
 ## 🧼 Preprocessing & Feature Engineering
 
@@ -59,6 +49,7 @@ StandardScaler was applied to numerical features to normalize the data for clust
 
 PCA (Principal Component Analysis) was used to reduce high-dimensional data into 2–3 dimensions for clear visualization.
 
+
 ## 📈 Exploratory Data Analysis (EDA)
 
 Several visualizations were used to understand the data distribution and discover patterns:
@@ -78,6 +69,7 @@ To visualize clusters clearly in 2D and reduce noise/overlap.
 🔹 Boxplots & Countplots
 
 To study behavior differences across genders, contracts, payment methods.
+
 
 ### 🤖 Modeling
 
@@ -113,6 +105,7 @@ To validate cluster quality.
 
 KMeans combined with PCA performed the best and was selected as the final model.
 
+
 ### 🎯 Results & Cluster Insights
 
 The algorithm identified meaningful customer segments, such as:
@@ -147,7 +140,8 @@ Cluster 4 — Minimal Service Users
 
 These insights can be used for personalized marketing and churn reduction.
 
-##3 💰 Business Impact
+
+### 💰 Business Impact
 
 Customer segmentation enables:
 
@@ -161,72 +155,84 @@ Customer segmentation enables:
 
 . Reduced marketing waste
 
-### 🖥 Streamlit Application
 
-The project includes a Streamlit web application allowing users to:
+### 🌐 Deployment on Hugging Face Spaces
 
-. Upload customer data
+This project is deployed using Hugging Face Spaces with a Gradio interface.
 
-. Run segmentation in real time
+How to deploy on Hugging Face:
 
-. Visualize clusters on PCA plots
+Go to Hugging Face Spaces:
+https://huggingface.co/spaces
 
-. See cluster statistics and summaries
+Create a New Space
 
-. Download segmentation results
+Select the Gradio template
 
-Run the app:
+Upload the following files into your Space:
+
+app.py
+
+model.pkl (if needed)
+
+requirements.txt 
+
 ```python
-streamlit run app.py
+import gradio as gr
+
+def predict_cluster(input_data):
+    # load model & scaler
+    return model.predict([input_data])[0]
+
+iface = gr.Interface(
+    fn=predict_cluster,
+    inputs=[gr.Number(), gr.Number(), gr.Number(), ...],
+    outputs="text",
+    title="Customer Segmentation",
+)
+
+iface.launch()
 ```
+
+
+### 🖥 How to Run Locally
+
+#### 1️⃣ Install dependencies:
+```python
+1. Install dependencies:
+```
+
+#### 2️⃣ Run the HuggingFace (Gradio) App Locally:
+```python
+python app.py
+```
+
+
 ### 📁 Project Structure
 ````markdown
 ├── data/
-│   ├── raw_data.csv
-│   └── processed_data.csv
-│
+├── models/
 ├── notebooks/
-│   └── segmentation_EDA_and_Modeling.ipynb
-│
-├── src/
-│   ├── preprocessing.py
-│   ├── modeling.py
-│   ├── visualization.py
-│   └── utils.py
-│
+│   ├── EDA.ipynb
+│   ├── Modeling.ipynb
 ├── app.py
 ├── requirements.txt
-└── README.md
+├── README.md
+
 ````
 
-### ⚙️ How to Run the Project
-#### 1️⃣ Install dependencies:
 
-```python
-pip install -r requirements.txt
-```
-#### 2️⃣ Run the modeling notebook:
-Open Jupyter Notebook:
-
-```python
-jupyter notebook notebooks/segmentation_EDA_and_Modeling.ipynb
-```
-
-#### 3️⃣ Run the Streamlit app:
-
-```python
-streamlit run app.py
-```
 ## 📌 Conclusion
 
-This customer segmentation project provides businesses with a powerful analytical tool to deeply understand customer behavior and optimize decision-making processes. By combining machine learning, PCA visualization, and a Streamlit interface, the project delivers both analytical power and user-friendly accessibility.
+This customer segmentation project provides businesses with a powerful analytical tool to deeply understand customer behavior and optimize decision-making processes. By combining machine learning, PCA visualization,  the project delivers both analytical power and user-friendly accessibility.
 
-## 🚀 Future Improvements
 
-Add segmentation tracking over time
+## 🔮 Future Improvements
 
-Deploy the model as an API
+Testing the model on larger and more diverse datasets
 
-Add deep learning–based clustering (Autoencoders + KMeans)
+Improving model accuracy with advanced feature engineering
 
-Integrate churn prediction together with segmentation
+Creating a more interactive and analytical dashboard in Hugging Face
+
+Adding an API layer for integration with CRM systems
