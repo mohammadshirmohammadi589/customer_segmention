@@ -28,7 +28,6 @@ The dataset contains standard customer attributes commonly used in segmentation:
 customerID ,gender , SeniorCitizen ,Partner ,dependents , tenure , PhoneService , MultipleLines , InternetService , OnlineSecurity , OnlineBackup , DeviceProtection , TechSupport , StreamingTV , StreamingMovies , Contract , PaperlessBilling , PaymentMethod , MonthlyCharges , TotalCharges , Churn
 
 
-
 ## 🧼 Preprocessing & Feature Engineering
 
 The following steps were performed:
